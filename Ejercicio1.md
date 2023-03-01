@@ -28,6 +28,15 @@ docker container ls -a
 Nos mostrara un listado con nuestros contenedores el cual nos dira su id,la imagen utilizada,si tiene algun comando que podamos usar,cuando fue creada,su status,si tiene algun puerto abierto y su nombre:
 ![Docker container ls -a](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker3.png)
 ### Primer Dockerfile
+- Configuraciones previas
+Primero Tendremos que crear dos archivos uno llamado Dockerfile y otro llamado main.py ya que necesitaremos estos archivos para crear el contenedor.  
+
+Para crear los archivos usaremos estos comandos:
+```bash 
+sudo nano Dockerfile
+sudo nano main.py
+```
+Para guardar el archivo y que no se borre al no ponerle nada le daremos al comando **Control+O**
 - Edita el fichero Dockerfile
 - Construye el contenedor
 - Ejecútalo
