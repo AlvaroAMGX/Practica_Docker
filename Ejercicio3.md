@@ -57,5 +57,5 @@ docker run -d --name servidor_wp \
 ```
 Si ahora un docker ps -a podremos ver que estan los dos contenedores encendidos:  
 ![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker25.png)
-Si ahora vamos a localhost que esta conectado con nuestro puerto 80 podremos ver directamente la aplicación temperaturas:
+Si ahora vamos a localhost que esta conectado con nuestro puerto 80 podremos ver directamente la aplicación de wordpress:
 ![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker26.png)
