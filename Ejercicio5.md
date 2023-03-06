@@ -13,4 +13,10 @@ Ahora para crear la imagen usamos este comando:
 docker build -t josedom24/ejemplo1:v1 .
 ```
 Si usamos docker images podremos ver la imagen que acabamos de crear:
-![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker30.png)
+![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker30.png) 
+Por ultimo vamos a crear un contenedor con esta imagen
+```bash
+docker run -d -p 80:80 --name ejemplo1 josedom24/ejemplo1:v1
+```
+Aqui podremos ver como ha funcionado:
+![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker31.png) 
