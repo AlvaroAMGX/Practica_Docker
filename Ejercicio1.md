@@ -27,51 +27,53 @@ docker container ls -a
 ```
 Nos mostrara un listado con nuestros contenedores el cual nos dira su id,la imagen utilizada,si tiene algun comando que podamos usar,cuando fue creada,su status,si tiene algun puerto abierto y su nombre:
 ![Docker container ls -a](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker3.png)
-### Primer Dockerfile
-- Configuraciones previas  y modo de probar que funciona
-Primero Tendremos que crear dos archivos uno llamado Dockerfile y otro llamado main.py ya que necesitaremos estos archivos para crear el contenedor.  
-
-Para crear los archivos usaremos estos comandos:
-```bash 
-# Este archvio lo dejaremos en blanco
-sudo nano Dockerfile
-```
-Para guardar el archivo y que no se borre al no ponerle nada le daremos al comando **Control+O**  
-Dentro de main.py vamos a poner un print para comprobar que funciona correctamente:
+### Primer Dockerfile  
+- Edita el fichero Dockerfile  
+Primero vamos a  conseguir una aplicación para probar:
 ```bash
-sudo nano main.py
------------------
-#!/usr/bin/env python3
-
-print("Este contenedor esta funcionando correctamente")
+git clone https://github.com/docker/getting-started.git
 ```
-- Edita el fichero Dockerfile
-Para empezar a editarlo comenzaremos  este comando:
-```bash 
-sudo nano Dockerfile
-```
-Ahora dentro de este archivo primero pondremos la imagen,luego le vamos a indicar que copie nuestro archivo main.py dentro del container y luego que lo ejecute en el terminal:
+Para empezar a editarlo comenzaremos  este comando **sudo nano Dockerfile** tendremos que hacerlo dentro de esta ruta getting-started/app:
 ```bash
-# Aqui le indicamos que imagen y que versión queremos en nuestro caso python y la ultima versión que es la más actualizada.
-FROM python:latest
+touch Dockerfile
+---------------
+# Dentro pondremos esto
 
-# Copiamos el archivo main.py que creamos antes para ver si el contenedor funciona.
-COPY main.py /
-
-# Aqui le decimos que ejecute el archivo que acabamos de copiar.
-CMD [ "python", "./main.py" ]
+# syntax=docker/dockerfile:1
+   
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
 ```
 - Construye el contenedor
-Para construirlo usaremos el comando:
+Para construirlo usaremos el comando docker build,haremos esto:
 ```bash
-docker build -t Prueba-Python
+docker build -t getting-started .
 ```
+Empezara a construirlo y en poco tiempo lo dejara listo
 - Ejecútalo
-Para ejecutarlo usaremos el comando:
-```bash 
-docker run python-test
+Para ejecutarlo usaremos este comando:
+```bash
+docker run -dp 3000:3000 getting-started
 ```
-Nos deberia salir esto,lo que significara que esta correctamente realizado:
-
-- Create una cuenta en hub.docker.com
-- Publícalo
+Si nos vamos a http://localhost:3000 nos deberia salir esto:  
+![funciona](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker6.png)
+- Create una cuenta en hub.docker.com  
+Aqui hay una captura de que tengo cuenta creada:  
+![cuenta](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker5.png)  
+- Publícalo  
+Para publicarlo habra que cumplir varios requisitos:  
+  - Primero deberemos tener una cuenta y conectarla con docker login y meter nuestras credenciales
+  - Segundo le cambiamos el tag con este comando:
+```bash
+sudo docker tag getting-started:latest elgordoasesino/prueba:prueba
+```
+  - por ultimo usaremos este comando:
+```bash
+sudo docker push elgordoasesino/prueba:prueba
+```
+Y ya habremos subido la imagen para comprobarlo podremos ir a docker hub y veremos que esta subida:  
+![cuenta](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker7.png)  
