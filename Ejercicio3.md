@@ -12,3 +12,5 @@ docker run -d -p 80:5000 --name guestbook --network red_guestbook iesgn/guestboo
 ```
 Si ahora un docker ps -a podremos ver que estan los dos contenedores encendidos:  
 ![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker21.png)
+Si ahora vamos a localhost que esta conectado con nuestro puerto 80 podremos ver directamente la aplicación guestbook:
+![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker22.png)
