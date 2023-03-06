@@ -34,11 +34,34 @@ Ahora para crear la imagen usamos este comando:
 ```bash
 docker build -t josedom24/ejemplo2:v1 .
 ```
-Si usamos docker images podremos ver la imagen que acabamos de crear:
-![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker32.png) 
-Por ultimo vamos a crear un contenedor con esta imagen
+Si usamos docker images podremos ver la imagen que acabamos de crear:  
+![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker32.png)  
+Por ultimo vamos a crear un contenedor con esta imagen  
 ```bash
 docker run -d -p 80:80 --name ejemplo2 josedom24/ejemplo2:v1
 ```
-Aqui podremos ver como ha funcionado:
+Aqui podremos ver como ha funcionado:  
 ![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker33.png) 
+## Construcción de imágenes con una una aplicación PHP
+Deberemos tener un fichero llamado Dockerfile y un directorio que se llamara app con una app.py dentro,dentro del dockerfile meteremos esto:
+```bash
+FROM debian
+RUN apt-get update && apt-get install -y python3-pip  && apt-get clean && rm -rf /var/lib/apt/lists/*
+COPY app /usr/share/app
+WORKDIR /usr/share/app
+RUN pip3 install --no-cache-dir -r requirements.txt
+EXPOSE 3000
+CMD [ "python3", "app.py"]
+```
+Ahora para crear la imagen usamos este comando:
+```bash
+docker build -t josedom24/ejemplo3:v1 .
+```
+Si usamos docker images podremos ver la imagen que acabamos de crear:  
+![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker34.png)  
+Por ultimo vamos a crear un contenedor con esta imagen  
+```bash
+docker run -d -p 80:3000 --name ejemplo2 josedom24/ejemplo3:v1
+```
+Aqui podremos ver como ha funcionado:  
+![foto docker](https://github.com/AlvaroAMGX/Practica_Docker/blob/main/Imagenes/docker35.png) 
